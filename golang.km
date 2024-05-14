@@ -1,0 +1,81 @@
+{
+    "root": {
+        "data": {
+            "id": "d19hskhxlt40",
+            "created": 1715702545684,
+            "text": "golang"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d19hsn8y6uw0",
+                    "created": 1715702551671,
+                    "text": "channel"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "d19iqeju3mg0",
+                    "created": 1715705197120,
+                    "text": "context"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "d19iqpyj48o0",
+                    "created": 1715705221953,
+                    "text": "协程"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d19iwku99dk0",
+                            "created": 1715705680996,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d19ix0qmrug0",
+                                    "created": 1715705715605,
+                                    "text": "协程在IO多路复用场景"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d19izwpjt9c0",
+                                            "created": 1715705941925,
+                                            "text": "阻塞式IO"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d19izvnqkm80",
+                                    "created": 1715705939639,
+                                    "text": "topic"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d19iwjs3p940",
+                    "created": 1715705678689,
+                    "text": "topic"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}
