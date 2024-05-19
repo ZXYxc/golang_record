@@ -1,0 +1,344 @@
+{
+    "root": {
+        "data": {
+            "id": "d1b9n7sguy00",
+            "created": 1715882677236,
+            "text": "etcd"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1b9nb76kzs0",
+                    "created": 1715882684656,
+                    "text": "和redis对比的区别"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dsz0kx8mw0",
+                            "created": 1716140322914,
+                            "text": "etcd优点",
+                            "layout_right_offset": {
+                                "x": -5,
+                                "y": -89
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dsz3rcl680",
+                                    "created": 1716140329833,
+                                    "text": "强一致性"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1dt223pec00",
+                                            "created": 1716140561319,
+                                            "text": "K8S如果导致将服务负载到失效的节点上，这将产生灾难性的影响。"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1dte26nvqg0",
+                                                    "created": 1716141501868,
+                                                    "text": "弱一致性"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dte55osw80",
+                                                            "created": 1716141508339,
+                                                            "text": "某个数据副本被更新后，其他数据副本不一定都能读到最新的数据"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d1dte6mt97k0",
+                                                    "created": 1716141511551,
+                                                    "text": "最终一致性"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dteld7jyo0",
+                                                            "created": 1716141543623,
+                                                            "text": "弱一致性的特殊情况，虽然暂时存在数据不一致，但一定时间后，数据会趋于一致"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dsz5jdrww0",
+                                    "created": 1716140333705,
+                                    "text": "分布式存储"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dt3u7jz800",
+                                    "created": 1716140700866,
+                                    "text": "watch特性"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1dt3vwhhgw0",
+                                            "created": 1716140704550,
+                                            "text": "监听事件变更，controller的基础"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dt5plggrs0",
+                                            "created": 1716140847551,
+                                            "text": "基于 HTTP/2 的流式传输、多路复用，实现了一个连接支持多个 watcher"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dt67u6m680",
+                                            "created": 1716140887261,
+                                            "text": "事件存储：从滑动窗口优化成稳定可靠的 MVCC 机制，历史版本保存在磁盘中，具备更好的扩展性、稳定性",
+                                            "layout_right_offset": {
+                                                "x": -4,
+                                                "y": 5
+                                            }
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dt6v56xuw0",
+                                            "created": 1716140937992,
+                                            "text": "Watch 特性的核心实现模块是 watchableStore"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1dt71t8qew0",
+                                                    "created": 1716140952507,
+                                                    "text": "它通过将 watcher 划分为 synced/unsynced/victim 三类，将问题进行了分解，并通过多个后台异步循环 goroutine 负责不同场景下的事件推送，提供了各类异常等场景下的 Watch 事件重试机制，尽力确保变更事件不丢失、按逻辑时钟版本号顺序推送给 client",
+                                                    "layout_right_offset": {
+                                                        "x": 74,
+                                                        "y": 0
+                                                    }
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d1dt887sxao0",
+                                                    "created": 1716141044812,
+                                                    "text": "Topic",
+                                                    "image": "https://static001.geekbang.org/resource/image/42/bf/42575d8d0a034e823b8e48d4ca0a49bf.png?wh=1920*1075",
+                                                    "imageTitle": "",
+                                                    "imageSize": {
+                                                        "width": 200,
+                                                        "height": 111
+                                                    }
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dt79z0pyg0",
+                                            "created": 1716140970271,
+                                            "text": "etcd 基于 map 和区间树数实现了 watcher 与事件快速匹配，保障了大规模场景下的 Watch 机制性能和读写稳定性"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1b9nm5xf2g0",
+                    "created": 1715882708525,
+                    "text": "raft协议"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1b9polvqw80",
+                            "created": 1715882870572,
+                            "text": "节点状态"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1b9prh2ey80",
+                                    "created": 1715882876811,
+                                    "text": "Leader 主节点：接受Client更新请求，写入本地后同步至其他副本"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1b9pzn31rs0",
+                                    "created": 1715882894589,
+                                    "text": "Follower 从节点：从Leader中接受更新请求，写入本地日志文件。对客户端提供读请求"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1b9q69d2y00",
+                                    "created": 1715882908997,
+                                    "text": "Candidate 候选节点：如果follower节点一段时间内没有收到Leader心跳（一般为150~300ms），就会变成Candidate节点，进入选举阶段直至选出新的Leader节点 Candidate状态才结束。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9qtp6eww0",
+                            "created": 1715882960019,
+                            "text": "TermId 任期号"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1b9qx7dyo80",
+                                    "created": 1715882967650,
+                                    "text": "时间被划分为一个个任期，每次选举后都会产生一个新的termId，一个任期内只有一个Leader"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9r0f2phk0",
+                            "created": 1715882974646,
+                            "text": "RequestVote 请求投票"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1b9r4wq53c0",
+                                    "created": 1715882984420,
+                                    "text": "candidate状态节点在选举过程中发起，收到多数派响应后称为Leader"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9seggg6w0",
+                            "created": 1715883083568,
+                            "text": "leader接收到流程",
+                            "layout_right_offset": {
+                                "x": -9,
+                                "y": 266
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1b9spxxa8o0",
+                                    "created": 1715883108569,
+                                    "text": "Topic外部请求都由集群的Leader节点处理Leader节点每收到一个更改就写入Leader节点的日志\nLeader 节点写入日志后并未正式提交数据的修改，因为要提交修改必须要在复制给所有Follower节点之后才可以。\nLeader节点将修改复制到Flower节点\nLeader节点等待收到大多数Follower节点反馈写入完成\nLeader 提交修改，并且通知其他的Follower节点，修改已提交。\nLeader 节点返回Client操作结果\n这个过程称之为 日志复制"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9tqhd2280",
+                            "created": 1715883188109,
+                            "text": "Leader节点宕机重选举流程"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1b9tuka5a80",
+                                    "created": 1715883196992,
+                                    "text": "Leader节点突然下线\n此时最先超时的Follower节点（每个follower超时时间不一样）3.进入Candidate状态，开始重新选举\n重走选举流程。发起投票后收到了相同的票数，那么系统会开始等待超时重新投票"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1b9pnpc21k0",
+                    "created": 1715882868604,
+                    "text": "网络分区"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1b9vn8j2jk0",
+                            "created": 1715883337772,
+                            "text": "出现网络分区后，在多个分区可能都会出现对应的Leader节点\n如果某个分区的Leader收到了客户端的更新条目，因为他无法将更新复制给大多数的节点，所以修改一致处于未提交状态。\n如果某个分区的Leader收到了客户端更新条目，并且可以复制给大多数节点，那么修改会被正常提交。\n如果网络分区消失，任期较小的leader将下台，并且回滚未提交的修改。会匹配随较大任期的Leader的日志数据记录\n也就是说raft在发生网络分区的时候，是没有办法在半数以下的节点的网络分区中进行更改的",
+                            "layout_left_offset": {
+                                "x": -18,
+                                "y": -93
+                            }
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1b9oa5c3u80",
+                    "created": 1715882760732,
+                    "text": "其他协议"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1b9ws1wt2g0",
+                            "created": 1715883426620,
+                            "text": "二阶段提交协议（2PC）"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9wxizn9s0",
+                            "created": 1715883438537,
+                            "text": "三阶段提交（3PC）"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1b9x5z4iuo0",
+                            "created": 1715883456927,
+                            "text": "Paxos(中心化分布式一致性协议，Raft)的前身"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

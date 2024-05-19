@@ -1,0 +1,208 @@
+{
+    "root": {
+        "data": {
+            "id": "d1dtgnw78bs0",
+            "created": 1716141705853,
+            "text": "网络"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1dtgr1ga2w0",
+                    "created": 1716141712701,
+                    "text": "TCP粘包"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dtrzs73qo0",
+                            "created": 1716142593738,
+                            "text": "TCP是基于字节流传输的",
+                            "layout_right_offset": {
+                                "x": 18,
+                                "y": -57
+                            }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtsew1iio0",
+                            "created": 1716142626622,
+                            "text": "数据可能被切割和组装成各种数据包，接收端收到这些数据包后没有正确还原原来的消息，因此出现粘包现象。",
+                            "layout_right_offset": {
+                                "x": 12,
+                                "y": -53
+                            }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtu3iozog0",
+                            "created": 1716142758599,
+                            "text": "TCP_NODELAY = 1，禁用 Nagle 算法。",
+                            "layout_right_offset": {
+                                "x": -2,
+                                "y": -45
+                            }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtv4q8ib40",
+                            "created": 1716142839596,
+                            "text": "解决办法：加入特殊标志+长度",
+                            "image": "https://segmentfault.com/img/remote/1460000039691688",
+                            "imageTitle": "",
+                            "imageSize": {
+                                "width": 200,
+                                "height": 85
+                            },
+                            "layout_right_offset": {
+                                "x": 61,
+                                "y": -34
+                            }
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dtwx6rmk00",
+                    "created": 1716142979909,
+                    "text": "UDP粘包"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dtwzhozv40",
+                            "created": 1716142984924,
+                            "text": "是面向无连接，不可靠的，基于数据报的传输层通信协议。"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtxienntk0",
+                            "created": 1716143026099,
+                            "text": "Topic"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dtxijhovk0",
+                                    "created": 1716143026391,
+                                    "text": "基于数据报是指无论应用层交给 UDP 多长的报文，UDP 都照样发送，即一次发送一个报文"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dtxgt0xy80",
+                    "created": 1716143022614,
+                    "text": "IP粘包"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dtz8cf36o0",
+                            "created": 1716143160924,
+                            "text": "IP 层从按长度切片到把切片组装成一个数据包的过程中，都只管运输，都不需要在意消息的边界和内容，都不在意消息内容了，那就不会有粘包一说了。"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dtv40icrk0",
+                    "created": 1716142838040,
+                    "text": "TCP拥塞控制"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "d1dtu2jwgvk0",
+                    "created": 1716142756495,
+                    "text": "Topic"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "d1dthb805yw0",
+                    "created": 1716141756632,
+                    "text": "四层协议"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dthcpbmog0",
+                            "created": 1716141759856,
+                            "text": "消息在进入每一层时都会多加一个报头",
+                            "image": "https://segmentfault.com/img/remote/1460000039691663",
+                            "imageTitle": "",
+                            "imageSize": {
+                                "width": 200,
+                                "height": 107
+                            }
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dtyqxhyvc0",
+                    "created": 1716143123017,
+                    "text": "Topic"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "d1du20nkq0o0",
+                    "created": 1716143379277,
+                    "text": "grpc"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1du22vw9540",
+                            "created": 1716143384133,
+                            "text": "gRPC基于HTTP/2协议进行数据传输"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1du2jkwcjc0",
+                            "created": 1716143420474,
+                            "text": "gRPC使用Protocol Buffers作为默认的序列化协议，而传统的RPC框架则使用JSON、XML等格式。"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1du2d52f0o0",
+                    "created": 1716143406456,
+                    "text": "Topic"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

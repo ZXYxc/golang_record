@@ -1,0 +1,355 @@
+{
+    "root": {
+        "data": {
+            "id": "d1b3v7tg7ds0",
+            "created": 1715866377549,
+            "text": "kafka"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1b3vb7jn4w0",
+                    "created": 1715866384932,
+                    "text": "消息模型",
+                    "layout_mind_offset": {
+                        "x": -29,
+                        "y": -32
+                    }
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1ba2qs0it40",
+                            "created": 1715883894030,
+                            "text": "Topic",
+                            "image": "https://img-blog.csdnimg.cn/46393ab879cb4d4cba799001baaa6bac.png",
+                            "imageTitle": "https://img-blog.csdnimg.cn/46393ab879cb4d4cba799001baaa6bac.png",
+                            "imageSize": {
+                                "width": 200,
+                                "height": 107
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1ba3levy6g0",
+                                    "created": 1715883960717,
+                                    "text": "broker是为了高可用，broker+partiton每个集群都有"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1ba53mnvao0",
+                    "created": 1715884078733,
+                    "text": "ack"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1ba59r57f40",
+                            "created": 1715884092065,
+                            "text": "ack=1，只要leader写成功了就就返回，再异步写入其他broker"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ba5mj3n540",
+                            "created": 1715884119876,
+                            "text": "acl=2或者ack=-1，服务端等到leader和follower均写入成功才返回"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ba66lgcns0",
+                            "created": 1715884163554,
+                            "text": "ack=0，输出即成功"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1ba6inev880",
+                    "created": 1715884189794,
+                    "text": "备份因子"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1ba6qo0isg0",
+                            "created": 1715884207245,
+                            "text": "多分区"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dcj4egcv40",
+                    "created": 1716093939645,
+                    "text": "如何保证消息不丢失"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dcj8enqbk0",
+                            "created": 1716093948364,
+                            "text": "1、生产者端，设计ACK参数"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dco1gnb0g0",
+                                    "created": 1716094325068,
+                                    "text": "拓展：幂等性"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1dcl5kwqrs0",
+                            "created": 1716094098940,
+                            "text": "2、服务端。配置多个Partition"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dclcf1by00",
+                            "created": 1716094113823,
+                            "text": "3、消费者端，不做异步的消息处理"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dcq3ij5l40",
+                                    "created": 1716094486264,
+                                    "text": "自己处理offset，保证真的消费了数据库offset才偏移"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dcl49njuw0",
+                    "created": 1716094096083,
+                    "text": "日志"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dcs3587gw0",
+                            "created": 1716094642188,
+                            "text": "以topic、partition为维度"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dct5zrdso0",
+                                    "created": 1716094726752,
+                                    "text": "金融场景数据细分，导致partition和topic过多，读取日志的性能变差"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dcu13g9a00",
+                                    "created": 1716094794455,
+                                    "text": "缺点：日志文件碎片化"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1dctvumxow0",
+                            "created": 1716094783038,
+                            "text": "RocketMq"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dcu6i2x1c0",
+                                    "created": 1716094806224,
+                                    "text": "统一的commitRock，接收所有topic，存在一组文件中，通过索引组织"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dhpewmo3s0",
+                                    "created": 1716108538246,
+                                    "text": "可以同步刷盘"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dcy44xk540",
+                    "created": 1716095114532,
+                    "text": "消息依旧丢失的元凶"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dcy9eo5hc0",
+                            "created": 1716095126004,
+                            "text": "数据在内存未同步写入磁盘中"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dhviqpteg0",
+                                    "created": 1716109016781,
+                                    "text": "log.flush.interval.messages"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dhw17q8gw0",
+                                    "created": 1716109056992,
+                                    "text": "log.flush.interval.ms"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dic3fcx140",
+                    "created": 1716110315633,
+                    "text": "再平衡"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dicryqpdk0",
+                            "created": 1716110369048,
+                            "text": "在同一个消费者组当中，分区的所有权从一个消费者转移到另外一个消费者"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dj0wft3io0",
+                    "created": 1716112259527,
+                    "text": "高性能"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dj128oo0g0",
+                            "created": 1716112272157,
+                            "text": "利用了 PageCache 缓存"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dj15jbv7c0",
+                            "created": 1716112279331,
+                            "text": "磁盘顺序写"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dj1bji7lk0",
+                            "created": 1716112292402,
+                            "text": "零拷贝技术",
+                            "layout_left_offset": {
+                                "x": -3,
+                                "y": -17
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1ds2w4re0o0",
+                                    "created": 1716137805576,
+                                    "text": "非零拷贝：四次拷贝",
+                                    "image": "https://mic-blob-bucket.oss-cn-beijing.aliyuncs.com/view.png",
+                                    "imageTitle": "",
+                                    "imageSize": {
+                                        "width": 200,
+                                        "height": 108
+                                    }
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1ds45sh1k00",
+                                    "created": 1716137904965,
+                                    "text": "零拷贝是相对于用户空间来说，不再需要进行数据拷贝"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1ds49pwc800",
+                                            "created": 1716137913517,
+                                            "text": "在Linux中，零拷贝技术依赖于底层的sendfile()方法实现（新方法）"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1ds5ti1kkg0",
+                                            "created": 1716138034942,
+                                            "text": " mmap 的文件映射机制",
+                                            "note": "将磁盘文件映射到内存, 用户通过修改内存就能修改磁盘文件。使用这种方式可以获取很大的I/O提升，省去了用户空间到内核空间复制的开销"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1ds4s1nsuo0",
+                            "created": 1716137953410,
+                            "text": "Topic"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dj1getjwg0",
+                            "created": 1716112303003,
+                            "text": "pull 拉模式"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

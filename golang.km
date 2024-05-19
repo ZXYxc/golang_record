@@ -12,7 +12,95 @@
                     "created": 1715702551671,
                     "text": "channel"
                 },
-                "children": []
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dslrv5j4w0",
+                            "created": 1716139285207,
+                            "text": "创建channel实际上就是在内存中实例化了一个hchan结构体，并返回一个chan指针",
+                            "note": "```go\ntype hchan struct {\n    qcount   uint           // channel中的元素个数\n    dataqsiz uint           // channel中循环队列的长度\n    buf      unsafe.Pointer // channel缓冲区数据指针\n    elemsize uint16            // buffer中每个元素的大小\n    closed   uint32            // channel是否已经关闭，0未关闭\n    elemtype *_type // channel中的元素的类型\n    sendx    uint   // channel发送操作处理到的位置\n    recvx    uint   // channel接收操作处理到的位置\n    recvq    waitq  // 等待接收的sudog（sudog为封装了goroutine和数据的结构）队列由于缓冲区空间不足而阻塞的Goroutine列表\n    sendq    waitq  // 等待发送的sudogo队列，由于缓冲区空间不足而阻塞的Goroutine列表\n\n    lock mutex   // 一个轻量级锁\n}\n\n```"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dsmo9qzfs0",
+                            "created": 1716139355747,
+                            "text": "朝channel发送数据"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dsn1sh8ts0",
+                                    "created": 1716139385178,
+                                    "text": "检查 recvq 是否为空，如果不为空，则从 recvq 头部取一个 goroutine，将数据发送过去，并唤醒对应的 goroutine 即可"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dsnwmij8o0",
+                                    "created": 1716139452297,
+                                    "text": "如果 recvq 为空，则将数据放入到 buffer 中"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dso4uqkuo0",
+                                    "created": 1716139470209,
+                                    "text": "如果 buffer 已满，则将要发送的数据和当前 goroutine 打包成 sudog 对象放入到 sendq中，并将当前 goroutine 置为 waiting 状态"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1dsodq617s0",
+                            "created": 1716139489523,
+                            "text": "接受数据"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dsomkuf8w0",
+                                    "created": 1716139508793,
+                                    "text": "检查sendq是否为空，如果不为空，且没有缓冲区，则从sendq头部取一个goroutine，将数据读取出来，并唤醒对应的goroutine，结束读取过程"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dsp1fj8680",
+                                    "created": 1716139541123,
+                                    "text": "如果sendq不为空，且有缓冲区，则说明缓冲区已满，则从缓冲区中首部读出数据，把sendq头部的goroutine数据写入缓冲区尾部，并将goroutine唤醒，结束读取过程。",
+                                    "layout_right_offset": {
+                                        "x": 48,
+                                        "y": 0
+                                    }
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dspb6y8eo0",
+                                    "created": 1716139562372,
+                                    "text": "如果sendq为空，缓冲区有数据，则直接从缓冲区读取数据，结束读取过程"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dspgrrt9s0",
+                                    "created": 1716139574515,
+                                    "text": "如果sendq为空，且缓冲区没数据，则只能将当前的goroutine加入到recvq,并进入waiting状态，等待被写goroutine唤醒"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "data": {
@@ -69,9 +157,136 @@
                 "data": {
                     "id": "d19iwjs3p940",
                     "created": 1715705678689,
-                    "text": "topic"
+                    "text": "互斥锁和读写锁"
                 },
-                "children": []
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dsexcc9d40",
+                            "created": 1716138748581,
+                            "text": "互斥锁：Mutex"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dsg2yn6mw0",
+                                    "created": 1716138839178,
+                                    "text": "是为了来保护一个资源不会因为并发操作而引起冲突导致数据不准确"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1dsf4um13c0",
+                            "created": 1716138764924,
+                            "text": "读写锁：RWMutex（更高效，写操作少，读操作多的场景，底层仍是互斥锁）"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dshf2z3rc0",
+                                    "created": 1716138943926,
+                                    "text": "读锁需要阻塞写锁"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dshjs3o9s0",
+                                    "created": 1716138954152,
+                                    "text": "读锁不阻塞读锁"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dsj4wyzh40",
+                                    "created": 1716139078523,
+                                    "text": "写锁需要阻塞读锁"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1dtmdf9xgw0",
+                    "created": 1716142153246,
+                    "text": "内存逃逸"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dtmgvn8000",
+                            "created": 1716142160767,
+                            "text": "go build -gcflags=-m main.go"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtncwotko0",
+                            "created": 1716142230487,
+                            "text": "golang程序变量会携带有一组校验数据，用来证明它的整个生命周期是否在运行时完全可知。如果变量通过了这些校验，它就可以在栈上分配。否则就说它 逃逸 了，必须在堆上分配。"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1dtnsubaig0",
+                            "created": 1716142265172,
+                            "text": "典型场景"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dtnumentc0",
+                                    "created": 1716142269048,
+                                    "text": "在方法内把局部变量指针返回 局部变量原本应该在栈中分配，在栈中回收。但是由于返回时被外部引用，因此其生命周期大于栈，则溢出。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dto602jjc0",
+                                    "created": 1716142293818,
+                                    "text": "发送指针或带有指针的值到 channel 中。 在编译时，是没有办法知道哪个 goroutine 会在 channel 上接收数据。所以编译器没法知道变量什么时候才会被释放"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dtofwxu4o0",
+                                    "created": 1716142315396,
+                                    "text": "Topic"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1dtog3pecw0",
+                                            "created": 1716142315806,
+                                            "text": "在一个切片上存储指针或带指针的值。 一个典型的例子就是 []*string 。这会导致切片的内容逃逸。尽管其后面的数组可能是在栈上分配的，但其引用的值一定是在堆上。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dtoto5kio0",
+                                    "created": 1716142345340,
+                                    "text": "slice 的背后数组被重新分配了，因为 append 时可能会超出其容量( cap )。",
+                                    "note": " slice 初始化的地方在编译时是可以知道的，它最开始会在栈上分配。如果切片背后的存储要基于运行时的数据进行扩充，就会在堆上分配。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },

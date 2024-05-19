@@ -1,0 +1,241 @@
+{
+    "root": {
+        "data": {
+            "id": "d1dk171kh800",
+            "created": 1716115103720,
+            "text": "Main Topic"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1dk1ct7cww0",
+                    "created": 1716115116275,
+                    "text": "页"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1dk1f1lzs00",
+                            "created": 1716115121137,
+                            "text": "每个节点都是一个16k的页，其中存数据的大约是15k"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1dk1r9qy600",
+                                    "created": 1716115147751,
+                                    "text": "非叶子结点"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1dk23mznqo0",
+                                            "created": 1716115174673,
+                                            "text": "存索引"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1dk3ody1r40",
+                                                    "created": 1716115298202,
+                                                    "text": "每个索引都指向下一层的一个节点"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d1dk4637xoo0",
+                                                    "created": 1716115336736,
+                                                    "text": "能存的索引数量X=15*1024/(索引长度+4)"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dk29szdfs0",
+                                            "created": 1716115188096,
+                                            "text": "存指向下一层的页号（固定4Bytes）"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1dk1u8xzts0",
+                                    "created": 1716115154232,
+                                    "text": "叶子结点"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1dk5g6xfrk0",
+                                            "created": 1716115437092,
+                                            "text": "主键索引"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1dk5ktjzog0",
+                                                    "created": 1716115447167,
+                                                    "text": "每一行都是完整的数据行"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dk6g5jwk80",
+                                                            "created": 1716115515373,
+                                                            "text": "一页能存的大小Y：15k/一行数据占的空间"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dkbranzio0",
+                                                            "created": 1716115931448,
+                                                            "text": "每一个页内的数据：单向链表"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "d1dkl1a8kk00",
+                                                                    "created": 1716116658467,
+                                                                    "text": "Topic"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d1dk73job6w0",
+                                                    "created": 1716115566293,
+                                                    "text": "推荐一张表的树高度不超过3层"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dk7go4k400",
+                                                            "created": 1716115594860,
+                                                            "text": "一张表能存的数据行：X的平方*Y"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "d1dk9ckwgeg0",
+                                                            "created": 1716115742687,
+                                                            "text": "mysql会将索引导入内存，超过3层可能导致内存装不下，从而直接读磁盘，导致性能下降"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1dk5q9tj880",
+                                            "created": 1716115459035,
+                                            "text": "非主键索引"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1dk5siakiw0",
+                                                    "created": 1716115463901,
+                                                    "text": "每一行都是主键索引"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1drufpmto00",
+                    "created": 1716137142920,
+                    "text": "innoDB怎么解决幻读"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1druxyeceo0",
+                            "created": 1716137182632,
+                            "text": "Mysql有四种事务隔离级别，这四种隔离级别代表当存在多个事务并发冲突时，可能出现的脏读、不可重复读、幻读的问题。\n其中InnoDB在RR的隔离级别下，解决了幻读的问题。",
+                            "layout_left_offset": {
+                                "x": -67,
+                                "y": -70
+                            }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1drvg96ctc0",
+                            "created": 1716137222466,
+                            "text": "幻读是指在同一个事务中，前后两次查询相同的范围时，得到的结果不一致",
+                            "layout_left_offset": {
+                                "x": -39,
+                                "y": -45
+                            }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ds1e1g6io0",
+                            "created": 1716137687830,
+                            "text": "加锁（可重复读级别没有间隙锁）",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1drzxeijnc0",
+                                    "created": 1716137573250,
+                                    "text": "next-key Lock：每个数据行上的非唯一索引列上都会存在一把next-key lock，当某个事务持有该数据行的next-key lock时，会锁住一段左开右闭区间的数据。",
+                                    "image": "https://p3.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/ac12e4fc1f354cf4bc8902db5c3f8ffc~tplv-tt-shrink:640:0.jpg",
+                                    "imageTitle": "",
+                                    "imageSize": {
+                                        "width": 200,
+                                        "height": 91
+                                    }
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1drw5pafuo0",
+                                    "created": 1716137277860,
+                                    "text": "间隙锁：范围索引（i>4&&i<7)锁住（4,7）"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1drw1uleug0",
+                                    "created": 1716137269473,
+                                    "text": "记录锁——行锁：通过主键索引查询一条数据，就锁那一条数据"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}
