@@ -287,6 +287,253 @@
                         ]
                     }
                 ]
+            },
+            {
+                "data": {
+                    "id": "d1keo9gef680",
+                    "created": 1716810904384,
+                    "text": "Map",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1keobpd9e00",
+                            "created": 1716810909281,
+                            "text": "Go语言解决hash冲突不是链表，实际主要用的数组(内存上的连续空间)",
+                            "image": "http://blog-1251019962.cos.ap-beijing.myqcloud.com/qiniu_img_2022/20201217165551.png",
+                            "imageTitle": "",
+                            "imageSize": {
+                                "width": 195,
+                                "height": 200
+                            },
+                            "hyperlink": null,
+                            "hyperlinkTitle": null,
+                            "expandState": "collapse"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1kf2ur4d0w0",
+                                    "created": 1716812047843,
+                                    "text": "读取过程",
+                                    "expandState": "expand",
+                                    "image": "https://img.draveness.me/2020-10-18-16030322432560/hashmap-mapaccess.png",
+                                    "imageTitle": "",
+                                    "imageSize": {
+                                        "width": 0,
+                                        "height": 0
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1kepzax1gw0",
+                                            "created": 1716811039013,
+                                            "text": "它会先比较哈希的高 8 位和桶中存储的 tophash，再比较传入的和桶中的值以加速数据的读写。"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1kf1mrotjs0",
+                                                    "created": 1716811952099,
+                                                    "text": "用于选择桶序号的是哈希的最低几位，而用于加速访问的是哈希的高 8 位"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kepupzltc0",
+                                            "created": 1716811029040,
+                                            "text": " ",
+                                            "expandState": "expand"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1kezh5s7eg0",
+                                                    "created": 1716811783162,
+                                                    "text": "bmap",
+                                                    "note": "字段\t解释\ntopbits\t长度为8的数组，[]uint8，元素为：key获取的hash的高8位，遍历时对比使用，提高性能。如下图所示\nkeys\t长度为8的数组，[]keytype，元素为：具体的key值。如下图所示\nelems\t长度为8的数组，[]elemtype，元素为：键值对的key对应的值。如下图所示\noverflow\t指向的hmap.extra.overflow溢出桶里的bmap，上面的字段topbits、keys、elems长度为8，最多存8组键值对，存满了就往指向的这个bmap里存\npad\t对齐内存使用的，不是每个bmap都有会这个字段，需要满足一定条件",
+                                                    "expandState": "expand"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d1keytztsq00",
+                                                            "created": 1716811732736,
+                                                            "text": "每个bmap结构最多存放8组键值对"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kf54etwew0",
+                                            "created": 1716812225596,
+                                            "text": "如果tophash[i]和哈希的高八位相同，就会返回目标位置的地址（inserti = &b.tophash[i]表示目标元素的在桶中的索引）"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kf8zk2l0g0",
+                                            "created": 1716812528485,
+                                            "text": "遍历的key： insertk = add(unsafe.Pointer(b), dataOffset+i*uintptr(t.keysize))"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kf94ca1340",
+                                            "created": 1716812538898,
+                                            "text": "遍历的value：add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.valuesize))"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kfbly7hn40",
+                                    "created": 1716812733958,
+                                    "text": "扩容"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1kfbnx7hag0",
+                                            "created": 1716812738251,
+                                            "text": "装载因子已经超过 6.5；"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kfbnx7v0o0",
+                                            "created": 1716812738251,
+                                            "text": "哈希使用了太多溢出桶"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kff5g9tug0",
+                                            "created": 1716813011501,
+                                            "text": "扩容会将桶的数量翻倍，元素再分配的过程也是在调用写操作时增量进行的，不会造成性能的瞬时巨大抖动。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kfelka1540",
+                                    "created": 1716812968208,
+                                    "text": "删除"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1kfemz8hs00",
+                                            "created": 1716812971289,
+                                            "text": "delete 关键字在编译期间经过类型检查\n和中间代码生成\n阶段被转换成 runtime.mapdelete\n 函数簇中的一员，用于处理删除逻辑的函数与哈希表的 runtime.mapassign\n 几乎完全相同",
+                                            "layout_left_offset": {
+                                                "x": -4,
+                                                "y": 1
+                                            }
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1keysryiio0",
+                    "created": 1716811730083,
+                    "text": "内存策略",
+                    "expandState": "expand",
+                    "hyperlink": "https://juejin.cn/post/6844903795739082760",
+                    "hyperlinkTitle": ""
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1kfgfs8dy80",
+                            "created": 1716813112357,
+                            "text": "Go在程序启动的时候，会先向操作系统申请一块内存（注意这时还只是一段虚拟的地址空间，没有真的分配内存），切成小块后自己管理。",
+                            "image": "https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/13/169755c860e5fa3c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp",
+                            "imageTitle": "",
+                            "imageSize": {
+                                "width": 200,
+                                "height": 43
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1kfixe0rrs0",
+                                    "created": 1716813307408,
+                                    "text": "arena区域就是我们所谓的堆区，Go动态分配的内存都是在这个区域，它把内存分割成8KB大小的页，一些页组合起来称为mspan"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kfj8glxko0",
+                                    "created": 1716813331509,
+                                    "text": "bitmap区域标识arena区域哪些地址保存了对象，并且用4bit标志位表示对象是否包含指针、GC标记信息。",
+                                    "layout_left_offset": {
+                                        "x": -15,
+                                        "y": 9
+                                    },
+                                    "image": "https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/13/169755c75a5cd188~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp",
+                                    "imageTitle": "",
+                                    "imageSize": {
+                                        "width": 0,
+                                        "height": 0
+                                    }
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kfkkdsfnk0",
+                                    "created": 1716813435824,
+                                    "text": "spans区域存放mspan（也就是一些arena分割的页组合起来的内存管理基本单元）的指针，每个指针对应一页",
+                                    "layout_left_offset": {
+                                        "x": -47,
+                                        "y": 0
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1kfkuklz2g0",
+                                            "created": 1716813458004,
+                                            "text": "mspan：Go中内存管理的基本单元，是由一片连续的8KB的是一个包含起始地址、mspan规格、页的数量等内容的双端链表。",
+                                            "layout_left_offset": {
+                                                "x": -82,
+                                                "y": 0
+                                            },
+                                            "note": "每个mspan按照它自身的属性Size Class的大小分割成若干个object，每个object可存储一个对象。并且会使用一个位图来标记其尚未使用的object。属性Size Class决定object大小，而mspan只会分配给和object尺寸大小接近的对象，当然，对象的大小要小于object大小。还有一个概念：Span Class，它和Size Class的含义差不多。\n\n这是因为其实每个 Size Class有两个mspan，也就是有两个Span Class。其中一个分配给含有指针的对象，另一个分配给不含有指针的对象。这会给垃圾回收机制带来利好，之后的文章再谈。\n\n如下图，mspan由一组连续的页组成，按照一定大小划分成object。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
