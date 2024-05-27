@@ -1,0 +1,22 @@
+{
+    "root": {
+        "data": {
+            "id": "d1ik5r9b3yw0",
+            "created": 1716623260964,
+            "text": "k8s"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1ik5uexwbk0",
+                    "created": 1716623267835,
+                    "text": "Topic"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

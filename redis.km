@@ -3,9 +3,235 @@
         "data": {
             "id": "d1dslhna89s0",
             "created": 1716139262964,
-            "text": "Main Topic"
+            "text": "Redis"
         },
-        "children": []
+        "children": [
+            {
+                "data": {
+                    "id": "d1fce55aorc0",
+                    "created": 1716296669360,
+                    "text": "redis的大key的影响"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1fcegpd0v40",
+                            "created": 1716296694518,
+                            "text": "内存占用过高"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fcg79gl1k0",
+                                    "created": 1716296830694,
+                                    "text": "触发内存淘汰策略。在极端情况下，可能导致内存耗尽，Redis实例崩溃，影响系统的稳定性"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1fcgdufoa80",
+                            "created": 1716296845023,
+                            "text": "性能下降"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fcgmfr0p40",
+                                    "created": 1716296863726,
+                                    "text": "大Key会占用大量内存空间，导致内存碎片增加"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1fcgwxspnk0",
+                            "created": 1716296886585,
+                            "text": "阻塞其他操作"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fch1d5nmo0",
+                                    "created": 1716296896221,
+                                    "text": "使用DEL命令删除一个大Key时，可能会导致Redis实例在一段时间内无法响应其他客户端请求"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1fch7z21740",
+                            "created": 1716296910606,
+                            "text": "网络拥塞"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fchdzgl400",
+                                    "created": 1716296923691,
+                                    "text": "每次获取大key产生的网络流量较大，可能造成机器或局域网的带宽被打满"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1fchrq5k600",
+                            "created": 1716296953603,
+                            "text": "主从同步延迟"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fchzwyaaw0",
+                                    "created": 1716296971429,
+                                    "text": "由于大Key占用较多内存，同步过程中需要传输大量数据，这会导致主从之间的网络传输延迟增加，进而影响数据一致性"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1fci9v2k140",
+                            "created": 1716296993083,
+                            "text": "数据倾斜"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1fcin9ou740",
+                                    "created": 1716297022265,
+                                    "text": "在Redis集群模式中，某个数据分片的内存使用率远超其他数据分片，无法使数据分片的内存资源达到均衡\n另外也可能造成Redis内存达到maxmemory参数定义的上限导致重要的key被逐出，甚至引发内存溢出。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1gcz3z7p4w0",
+                    "created": 1716399872420,
+                    "text": "作为消息队列，和传统mq的区别"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1gczaoak3k0",
+                            "created": 1716399886997,
+                            "text": "存在内存，无法容忍大量消息堆压"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1gczik4eio0",
+                            "created": 1716399904159,
+                            "text": "stream模式"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1jkzpvqzwg0",
+                    "created": 1716727168849,
+                    "text": "持久化"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1jkzxy2q000",
+                            "created": 1716727186404,
+                            "text": "AOF(Append Only File) ）",
+                            "image": "https://cdn.xiaolincoding.com//mysql/other/4eeef4dd1bedd2ffe0b84d4eaa0dbdea.png",
+                            "imageTitle": "https://cdn.xiaolincoding.com//mysql/other/4eeef4dd1bedd2ffe0b84d4eaa0dbdea.png",
+                            "imageSize": {
+                                "width": 176,
+                                "height": 200
+                            }
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1jkzzp05js0",
+                                    "created": 1716727190209,
+                                    "text": "执行写操作命令后，才将该命令记录到 AOF 日志里"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1jl27amyu80",
+                                            "created": 1716727363483,
+                                            "text": "不会阻塞当前写操作命令的执行"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1jl2prjxjs0",
+                                            "created": 1716727403688,
+                                            "text": "丢失的风险",
+                                            "priority": null
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1jl28oq2ag0",
+                                            "created": 1716727366511,
+                                            "text": "可能阻塞下一个写命令"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1jl4l0vam00",
+                                    "created": 1716727550095,
+                                    "text": "同步回磁盘的时机",
+                                    "image": "https://cdn.xiaolincoding.com//mysql/other/98987d9417b2bab43087f45fc959d32a.png",
+                                    "imageTitle": "https://cdn.xiaolincoding.com//mysql/other/98987d9417b2bab43087f45fc959d32a.png",
+                                    "imageSize": {
+                                        "width": 200,
+                                        "height": 84
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1jl5n570q80",
+                                            "created": 1716727633075,
+                                            "text": "控制 fsync() 函数"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1jl5zratio0",
+                            "created": 1716727660533,
+                            "text": ""
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
     },
     "template": "default",
     "theme": "fresh-blue",

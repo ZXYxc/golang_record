@@ -108,7 +108,32 @@
                     "created": 1715705197120,
                     "text": "context"
                 },
-                "children": []
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1iwss0lktk0",
+                            "created": 1716658918309,
+                            "text": "于当请求超时或者取消时候，相关的goroutine马上退出释放资源"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1iwswiv2hs0",
+                            "created": 1716658928120,
+                            "text": "其可以在多个goroutine或者多个处理函数之间传递共享的信息"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1iwxu2maow0",
+                            "created": 1716659314605,
+                            "text": "创建一个新的context，必须基于一个父context，新的context又可以作为其他context的父context。所有context在一起构造成一个context树。"
+                        },
+                        "children": []
+                    }
+                ]
             },
             {
                 "data": {
@@ -260,16 +285,59 @@
                             },
                             {
                                 "data": {
-                                    "id": "d1dtofwxu4o0",
-                                    "created": 1716142315396,
-                                    "text": "Topic"
+                                    "id": "d1dtoto5kio0",
+                                    "created": 1716142345340,
+                                    "text": "slice 的背后数组被重新分配了，因为 append 时可能会超出其容量( cap )。",
+                                    "note": " slice 初始化的地方在编译时是可以知道的，它最开始会在栈上分配。如果切片背后的存储要基于运行时的数据进行扩充，就会在堆上分配。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1du4nawziw0",
+                                    "created": 1716143585306,
+                                    "text": "在一个切片上存储指针或带指针的值。 一个典型的例子就是 []*string 。这会导致切片的内容逃逸。尽管其后面的数组可能是在栈上分配的，但其引用的值一定是在堆上。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1irob64qbk0",
+                    "created": 1716644462632,
+                    "text": "GMP "
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1irodjlpx40",
+                            "created": 1716644467800,
+                            "text": "什么时候回发生抢占"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1irokfn5a80",
+                                    "created": 1716644482798,
+                                    "text": "当goroutine因为channel操作或者network I/O而阻塞时"
                                 },
                                 "children": [
                                     {
                                         "data": {
-                                            "id": "d1dtog3pecw0",
-                                            "created": 1716142315806,
-                                            "text": "在一个切片上存储指针或带指针的值。 一个典型的例子就是 []*string 。这会导致切片的内容逃逸。尽管其后面的数组可能是在栈上分配的，但其引用的值一定是在堆上。"
+                                            "id": "d1irp7hsj6g0",
+                                            "created": 1716644532994,
+                                            "text": "此时M不会阻塞，M会继续寻找其他可运行的G"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1iwqohtuzk0",
+                                            "created": 1716658753915,
+                                            "text": "当阻塞的G恢复之后，重新进入P的队列等待执行"
                                         },
                                         "children": []
                                     }
@@ -277,14 +345,178 @@
                             },
                             {
                                 "data": {
-                                    "id": "d1dtoto5kio0",
-                                    "created": 1716142345340,
-                                    "text": "slice 的背后数组被重新分配了，因为 append 时可能会超出其容量( cap )。",
-                                    "note": " slice 初始化的地方在编译时是可以知道的，它最开始会在栈上分配。如果切片背后的存储要基于运行时的数据进行扩充，就会在堆上分配。"
+                                    "id": "d1iwkq3ltq00",
+                                    "created": 1716658287224,
+                                    "text": "当G陷入系统调用"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1iwlgeo4o00",
+                                            "created": 1716658344489,
+                                            "text": "此时G会阻塞在_Gsyscall状态，M也处于 block on syscall 状态"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1iwlru1xj40",
+                                            "created": 1716658369364,
+                                            "text": "此时的M可被抢占调度：执行该G的M会与P解绑，而P则尝试与其它idle的M绑定，继续执行其它G"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1iwlwzwopc0",
+                                            "created": 1716658380602,
+                                            "text": "如果没有其它idle的M，但P的Local队列中仍然有G需要执行，则创建一个新的M；"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1iwm4dfdc00",
+                                            "created": 1716658396657,
+                                            "text": "当系统调用完成后，G会重新尝试获取一个idle的P进入它的Local队列恢复执行，"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1iwm8nup680",
+                                            "created": 1716658405994,
+                                            "text": "如果没有idle的P，G会被标记为runnable加入到Global队列"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1iwn12vz280",
+                            "created": 1716658467854,
+                            "text": "what"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1iwn23mi2g0",
+                                    "created": 1716658470075,
+                                    "text": "G是goroutine，是golang实现的协程，M是OS线程，P是逻辑处理器"
                                 },
                                 "children": []
                             }
                         ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1iwonsbqq00",
+                            "created": 1716658595645,
+                            "text": "M"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1iwops89rs0",
+                                    "created": 1716658599993,
+                                    "text": "M获取可运行G流程是先从P的本地队列获取，若未获取到，则从其他P偷取过来（即work steal)，若其他的P也没有则从全局G队列获取，若都未获取到，则M将处于自旋状态，并不会销毁。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1ix63a4pb40",
+                    "created": 1716659961564,
+                    "text": "defer"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1ix6cjufbk0",
+                            "created": 1716659981742,
+                            "text": "defer函数的传入参数在定义时就已经明确"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ix6jdscfc0",
+                            "created": 1716659996614,
+                            "text": "defer函数是按照后进先出的顺序执行"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ix7522oqo0",
+                            "created": 1716660043795,
+                            "text": "defer函数可以读取和修改函数的命名返回值"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ix7tbqimg0",
+                            "created": 1716660096622,
+                            "text": "defer函数会构建成一个_defer链表，后面加入的defer函数会插入链表的头部，该链表链表头部会链接到G上"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1km5tdx7go0",
+                            "created": 1716832027730,
+                            "text": "return之后的语句先执行，defer后的语句后执行，最后再执行函数返回"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1km8mu6d340",
+                            "created": 1716832248568,
+                            "text": "遇到panic时，遍历本协程的defer链表，并执行defer"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1km8va3vsg0",
+                                    "created": 1716832266945,
+                                    "text": "遇到recover则停止panic，返回recover处继续往下执行"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1km8zgrttc0",
+                                    "created": 1716832276055,
+                                    "text": "如果没有遇到recover，遍历完本协程的defer链表后，向stderr抛出panic信息"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1km9sb9t0g0",
+                                    "created": 1716832338849,
+                                    "text": "panic仅有最后一个可以被revover捕获，有多个panic会覆盖只有最后的一个panic"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1kmb9x7dl40",
+                            "created": 1716832455545,
+                            "text": " defer下的函数参数包含子函数，需要连同函数地址、函数形参一同进栈，会先执行子函数"
+                        },
+                        "children": []
                     }
                 ]
             }

@@ -199,6 +199,243 @@
                     "text": "Topic"
                 },
                 "children": []
+            },
+            {
+                "data": {
+                    "id": "d1h4s5u45sg0",
+                    "created": 1716478318994,
+                    "text": "三次握手四次挥手"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1h4s9v27zk0",
+                            "created": 1716478327758,
+                            "text": "为什么是四次挥手"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1h4sh920q00",
+                                    "created": 1716478343842,
+                                    "text": "TCP是全双工协议，需要客户端和服务端都断开连接，服务端收到FIN包后虽然可以立刻发送ACK表示自己收到了，但是可能需要先等待处理完成\n再发送SYN包通知客户端要断开连接",
+                                    "layout_left_offset": {
+                                        "x": -38,
+                                        "y": -12
+                                    }
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1h5aia40yo0",
+                            "created": 1716479756637,
+                            "text": "为什么是三次握手"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1h5al8jzuw0",
+                                    "created": 1716479763073,
+                                    "text": "避免历史连接"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1h5apu64iw0",
+                                            "created": 1716479773087,
+                                            "text": "通过对包内确认应答号的校验，在网络不稳定重传后只认最新的包"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1h5nkjcd2g0",
+                                                    "created": 1716480780283,
+                                                    "text": "客户端收到后，发现自己期望收到的确认号应该是 100 + 1，而不是 90 + 1，于是就会回 RST 报文。"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h5odvc63s0",
+                                    "created": 1716480844135,
+                                    "text": "同步双方初始序列号"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1h5ow0ruqg0",
+                                            "created": 1716480883646,
+                                            "text": "接收方可以去除重复的数据；"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1h5ozyj6q80",
+                                            "created": 1716480892217,
+                                            "text": "接收方可以根据数据包的序列号按序接收；"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1h5p3ljv140",
+                                            "created": 1716480900140,
+                                            "text": "可以标识发送出去的数据包中， 哪些是已经被对方收到的（通过 ACK 报文中的序列号知道）"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h5pze90m00",
+                                    "created": 1716480969355,
+                                    "text": "会造成双方资源的浪费"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h5mw5kw540",
+                                    "created": 1716480727208,
+                                    "text": "三次握手是可以携带数据的，前两次握手是不可以携带数据的"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1h4xyysuns0",
+                    "created": 1716478774224,
+                    "text": "https"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1h4y09mgmw0",
+                            "created": 1716478777056,
+                            "text": "七次建立连接"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1h4zoun5q80",
+                                    "created": 1716478908933,
+                                    "text": "三次握手"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h4z20xe9c0",
+                                    "created": 1716478859247,
+                                    "text": "客户端发起https请求，服务端返回数字证书和公钥，服务端保留私钥（同时发送tls版本和支持的加密算法）"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h4zczl8co0",
+                                    "created": 1716478883111,
+                                    "text": "客户端收到相应后，对数字证书进行校验，通过的话本地生成一个随机数，这个随机数就是以后传输内容对称加密使用到的密钥，然后用公钥加密后发送给服务端；"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h4zitv0800",
+                                    "created": 1716478895825,
+                                    "text": "服务端接收后用自己的私钥进行非对称解密，拿到客户端的随机数；"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h4znawizc0",
+                                    "created": 1716478905563,
+                                    "text": "服务端将双方协定的对称密钥和加密算法发送给客户端，至此tls建立连接。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1h502vp3eg0",
+                            "created": 1716478939472,
+                            "text": "状态码"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1h504hotgo0",
+                                    "created": 1716478942979,
+                                    "text": "200 OK：客户端请求成功。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50b6s7qo0",
+                                    "created": 1716478957557,
+                                    "text": "400 Bad Request：客户端请求有语法错误，不能被服务器所理解。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50e9lol40",
+                                    "created": 1716478964258,
+                                    "text": "401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50gz6src0",
+                                    "created": 1716478970158,
+                                    "text": "403 Forbidden：服务器收到请求，但是拒绝提供服务。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50kkce680",
+                                    "created": 1716478977968,
+                                    "text": "404 Not Found：请求资源不存在，举个例子：输入了错误的URL"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50pcccqg0",
+                                    "created": 1716478988368,
+                                    "text": "500 Internal Server Error：服务器发生不可预期的错误。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1h50s8cogo0",
+                                    "created": 1716478994657,
+                                    "text": "503 Server Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常，举个例子：HTTP/1.1 200 OK（CRLF）。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },

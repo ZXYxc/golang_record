@@ -39,6 +39,40 @@
                                 "children": []
                             }
                         ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1gczw7tznc0",
+                            "created": 1716399933891,
+                            "text": "partition多副本高可用"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1gd30ke9j40",
+                                    "created": 1716400178450,
+                                    "text": "多replica"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1gd04sp82o0",
+                            "created": 1716399952567,
+                            "text": "ISR"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1gd3uerah40",
+                                    "created": 1716400243413,
+                                    "text": "leader维护的已经同步leader信息的节点"
+                                },
+                                "children": []
+                            }
+                        ]
                     }
                 ]
             },
@@ -342,6 +376,23 @@
                             "id": "d1dj1getjwg0",
                             "created": 1716112303003,
                             "text": "pull 拉模式"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1gd1o3iqug0",
+                    "created": 1716400072944,
+                    "text": "zookeeper"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1gd1rv1c9k0",
+                            "created": 1716400081139,
+                            "text": "Broker 注册、Topic 注册、Producer 和 Consumer 负载均衡、维护 Partition 与 Consumer 的关系、记录消息消费的进度以及 Consumer 注册等。"
                         },
                         "children": []
                     }
