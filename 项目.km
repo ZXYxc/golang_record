@@ -3,7 +3,7 @@
         "data": {
             "id": "d1kemasvq200",
             "created": 1716810750587,
-            "text": "项目类"
+            "text": " "
         },
         "children": [
             {
@@ -50,7 +50,195 @@
                         "data": {
                             "id": "d1kenc7de8g0",
                             "created": 1716810832004,
-                            "text": "topic"
+                            "text": "ACP内存增长到溢出，rancher未故障"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1kwforamq00",
+                                    "created": 1716861012395,
+                                    "text": "原因：广州环境使用旧的南海etcd的数据，存在无法连接的集群信息，但是ACP每两分钟会对失败的集群再次尝试连接，连接过程有逻辑导致的。",
+                                    "layout_left_offset": {
+                                        "x": -68,
+                                        "y": 0
+                                    }
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kwgv5yzs00",
+                                    "created": 1716861104707,
+                                    "text": "现象：toRecord函数96%的内存使用，追溯到newRoleRevision占据9G内存，是role/clusterRole的controller"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1kwlu63geo0",
+                                    "created": 1716861494359,
+                                    "text": "原因：每次cluster的连接实例化后会存到sync.Map中，然后进行startController，start操作前会检测集群是否可连，两次连接失败会对sync.map做清理，导致load时读取不到cluster，认为需要重新实例化连接，实例化导致controller被重新创建，会在informer追追加新的listener，listener的创建会分配新的buffer"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1kwv3mquu00",
+                            "created": 1716862220234,
+                            "text": "api-server出现OOM"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1kxpuv3l5s0",
+                                    "created": 1716864630437,
+                                    "text": "内存主要消耗在unmarshal中，是listandwatch动作触发的"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1kxr2g7i8w0",
+                                            "created": 1716864725315,
+                                            "text": "从日志中看出，是针对apprevision资源的reflector执行了 8分支才完成同步"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1kxrpwe67s0",
+                                            "created": 1716864776360,
+                                            "text": "system下有35w个appreveison资源"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1kxobk1dl40",
+                    "created": 1716864510046,
+                    "text": "使用临时存储导致集群驱逐"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1kxonwsuw80",
+                            "created": 1716864536939,
+                            "text": "代码中执行类似cp /NAS目录到容器目录，如果出现了大文件会导致临时存储消耗过大被驱逐"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1kxtkgzvt40",
+                    "created": 1716864921273,
+                    "text": "rollout status检查失败"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1kxu9p8i4g0",
+                            "created": 1716864976191,
+                            "text": "intitioalDelaySeconds+40s"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1kxv71q6go0",
+                            "created": 1716865048780,
+                            "text": "processdeadlinetime"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1kxw23iqx40",
+                            "created": 1716865116369,
+                            "text": "并发请求触发UntilWithSync: unable to sync caches"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d1ky0evj7080",
+                    "created": 1716865457641,
+                    "text": "kubelet异常重启导致流量损失5min"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1ky1pn31xc0",
+                            "created": 1716865559439,
+                            "text": "kuebelet节点失联超过40s"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1ky489yjbc0",
+                                    "created": 1716865756732,
+                                    "text": "kubelet的kubelet_node_status.go获取本节点的状态信息，每10s（ndoe-status-update-frequency）上报心跳"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1ky20q0trs0",
+                            "created": 1716865583561,
+                            "text": "pod状态unknown"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1ky5fl3alk0",
+                                    "created": 1716865851007,
+                                    "text": "controller-manager的node_lifecycle_controller每5s（node-monitor-period）向apiserver获取节点心跳信息，若40s（node-monitor-grace-period）没更新，就给节点打污点，标记notready"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1ky6mgbqgg0",
+                                    "created": 1716865944321,
+                                    "text": "controller-manager的node_lifecyc"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1ky2b0ydc00",
+                            "created": 1716865605990,
+                            "text": "endpoints为notReady，service找不到后端"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ky2hyuwk80",
+                            "created": 1716865621101,
+                            "text": "cis感知后端丢失，摘除VE上的后端"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d1ky31hbvbk0",
+                            "created": 1716865663576,
+                            "text": "kubelet恢复后，pod恢复正常，CIS恢复流量，节点取消驱逐"
                         },
                         "children": []
                     }
