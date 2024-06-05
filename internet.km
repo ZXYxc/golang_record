@@ -23,7 +23,32 @@
                                 "y": -57
                             }
                         },
-                        "children": []
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9k46ju340",
+                                    "created": 1717608953551,
+                                    "text": "调用send函数后并未传输，而是复制到内核"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9ksafa1s0",
+                                    "created": 1717609006028,
+                                    "text": "发送时机取决于发送窗口、拥塞窗口以及当前发送缓冲区的大小等条件"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9l243t280",
+                                    "created": 1717609027414,
+                                    "text": "不能认为一个用户消息对应一个 TCP 报文"
+                                },
+                                "children": []
+                            }
+                        ]
                     },
                     {
                         "data": {
@@ -126,15 +151,199 @@
                     "created": 1716142838040,
                     "text": "TCP拥塞控制"
                 },
-                "children": []
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1s9lp7y8mo0",
+                            "created": 1717609077713,
+                            "text": "慢启动"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9ly44t1k0",
+                                    "created": 1717609097073,
+                                    "text": "当发送方每收到一个 ACK，拥塞窗口 cwnd 的大小就会加 1"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9m9of9280",
+                                    "created": 1717609122244,
+                                    "text": "慢启动门限 ssthresh （slow start threshold）状态变量"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1s9mlb8clc0",
+                            "created": 1717609147568,
+                            "text": "拥塞避免"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9mocnvdk0",
+                                    "created": 1717609154185,
+                                    "text": "当 cwnd >= ssthresh 时，就会使用「拥塞避免算法」"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9n1gdnvc0",
+                                    "created": 1717609182708,
+                                    "text": "每当收到一个 ACK 时，cwnd 增加 1/cwnd"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1s9nc211u80",
+                            "created": 1717609205785,
+                            "text": "拥塞发生"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9nh9p1aw0",
+                                    "created": 1717609217132,
+                                    "text": "超时重传"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1s9nov5omg0",
+                                            "created": 1717609233667,
+                                            "text": "ssthresh 设为 cwnd/2"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9nt835rk0",
+                                            "created": 1717609243156,
+                                            "text": "cwnd 重置为 1 （是恢复为 cwnd 初始化值"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9ooqs69c0",
+                                            "created": 1717609311767,
+                                            "text": "然后进入，慢启动"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9o7rod7c0",
+                                    "created": 1717609274816,
+                                    "text": "快速重传"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1s9oyu91jc0",
+                                            "created": 1717609333745,
+                                            "text": "cwnd = cwnd/2 ，也就是设置为原来的一半"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9p71vh2o0",
+                                            "created": 1717609351620,
+                                            "text": "cwnd = cwnd/2 ，也就是设置为原来的一半"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9p9cq9lc0",
+                                            "created": 1717609356630,
+                                            "text": "进入快速恢复"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9p80f0cw0",
+                                    "created": 1717609353708,
+                                    "text": "快速恢复"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1s9psvilyg0",
+                                            "created": 1717609399125,
+                                            "text": "拥塞窗口 cwnd = ssthresh + 3"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9pwjl06o0",
+                                            "created": 1717609407110,
+                                            "text": "重传丢失的数据包"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9qd2flio0",
+                                            "created": 1717609443078,
+                                            "text": "重传丢失的数据包"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9qsczhrc0",
+                                            "created": 1717609476368,
+                                            "text": "如果收到新数据的 ACK 后，把 cwnd 设置为第一步中的 ssthresh 的值"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9r035ws00",
+                                            "created": 1717609493189,
+                                            "text": "次进入拥塞避免状态"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "data": {
                     "id": "d1dtu2jwgvk0",
                     "created": 1716142756495,
-                    "text": "Topic"
+                    "text": "tcpDump"
                 },
-                "children": []
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1s9rzdhzp40",
+                            "created": 1717609570001,
+                            "text": "常用命令"
+                        },
+                        "children": []
+                    }
+                ]
             },
             {
                 "data": {
@@ -348,7 +557,11 @@
                                 "data": {
                                     "id": "d1h4zczl8co0",
                                     "created": 1716478883111,
-                                    "text": "客户端收到相应后，对数字证书进行校验，通过的话本地生成一个随机数，这个随机数就是以后传输内容对称加密使用到的密钥，然后用公钥加密后发送给服务端；"
+                                    "text": "客户端收到相应后，对数字证书进行校验，通过的话本地生成一个随机数，这个随机数就是以后传输内容对称加密使用到的密钥，然后用公钥加密后发送给服务端；",
+                                    "layout_left_offset": {
+                                        "x": -97,
+                                        "y": -2
+                                    }
                                 },
                                 "children": []
                             },

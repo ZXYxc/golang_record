@@ -1,0 +1,159 @@
+{
+    "root": {
+        "data": {
+            "id": "d1s9a2ldrrs0",
+            "created": 1717608166453,
+            "text": "Main Topic"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d1s9a3w1aow0",
+                    "created": 1717608169274,
+                    "text": "进程和线程"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d1s9a69b6cg0",
+                            "created": 1717608174430,
+                            "text": "进程是资源调度的基本单位"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9cbl4cvs0",
+                                    "created": 1717608342757,
+                                    "text": "PCB 是进程存在的唯一标识"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1s9cg3194w0",
+                                            "created": 1717608352547,
+                                            "text": "进程描述信息"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9ckb05940",
+                                            "created": 1717608361736,
+                                            "text": "进程控制和管理信息"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9cngjyhc0",
+                                            "created": 1717608368602,
+                                            "text": "资源分配清单"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9ct8tyew0",
+                                            "created": 1717608381196,
+                                            "text": "CPU 相关信息"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d1s9cu9hry80",
+                                                    "created": 1717608383412,
+                                                    "text": "各个寄存器的值"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1s9dicd96o0",
+                                            "created": 1717608435829,
+                                            "text": "通过链表的方式进行组织，把具有相同状态的进程链在一起，组成各种队列。",
+                                            "layout_right_offset": {
+                                                "x": 17,
+                                                "y": 7
+                                            }
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9g7v2ieo0",
+                                    "created": 1717608648108,
+                                    "text": "进程在创建的过程中，需要资源管理信息，比如内存管理信息、文件管理信息"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9dqiuugo0",
+                                    "created": 1717608453636,
+                                    "text": "就绪"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9ds6hpdk0",
+                                    "created": 1717608457241,
+                                    "text": "阻塞"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9dtfjbyg0",
+                                    "created": 1717608459965,
+                                    "text": "执行"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1s9aawiht40",
+                            "created": 1717608184540,
+                            "text": "线程是 CPU 调度的单位"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d1s9fod1c4o0",
+                                    "created": 1717608605658,
+                                    "text": "线程只独享必不可少的资源，如寄存器和栈"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d1s9goi039k0",
+                                    "created": 1717608684323,
+                                    "text": "线程具有相同的地址空间（虚拟内存共享），这意味着同一个进程的线程都具有同一个页表"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d1s9fmra01s0",
+                            "created": 1717608602166,
+                            "text": " "
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

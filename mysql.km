@@ -203,7 +203,7 @@
                                 "data": {
                                     "id": "d1drzxeijnc0",
                                     "created": 1716137573250,
-                                    "text": "next-key Lock：每个数据行上的非唯一索引列上都会存在一把next-key lock，当某个事务持有该数据行的next-key lock时，会锁住一段左开右闭区间的数据。",
+                                    "text": "临键锁（Next-Key Locks）\n：每个数据行上的非唯一索引列上都会存在一把next-key lock，当某个事务持有该数据行的next-key lock时，会锁住一段左开右闭区间的数据。",
                                     "image": "https://p3.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/ac12e4fc1f354cf4bc8902db5c3f8ffc~tplv-tt-shrink:640:0.jpg",
                                     "imageTitle": "",
                                     "imageSize": {
@@ -211,23 +211,70 @@
                                         "height": 91
                                     }
                                 },
-                                "children": []
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1lfsyf2rfs0",
+                                            "created": 1716915653247,
+                                            "text": "临键锁只与非唯一索引列有关，在唯一索引列（包括主键列）上不存在临键锁"
+                                        },
+                                        "children": []
+                                    }
+                                ]
                             },
                             {
                                 "data": {
                                     "id": "d1drw5pafuo0",
                                     "created": 1716137277860,
-                                    "text": "间隙锁：范围索引（i>4&&i<7)锁住（4,7）"
+                                    "text": "间隙锁（Gap Locks）\n：范围索引（i>4&&i<7)锁住（4,7）"
                                 },
-                                "children": []
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1lfvabinv40",
+                                            "created": 1716915835881,
+                                            "text": "基于临键锁实现的"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1lfvj2uum00",
+                                            "created": 1716915854948,
+                                            "text": "全开放"
+                                        },
+                                        "children": []
+                                    }
+                                ]
                             },
                             {
                                 "data": {
                                     "id": "d1drw1uleug0",
                                     "created": 1716137269473,
-                                    "text": "记录锁——行锁：通过主键索引查询一条数据，就锁那一条数据"
+                                    "text": "记录锁（Record Locks)行锁：通过主键索引查询一条数据，就锁那一条数据"
                                 },
-                                "children": []
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d1lfpzlx1so0",
+                                            "created": 1716915420744,
+                                            "text": "for update语句"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d1lfqmunrp40",
+                                            "created": 1716915471339,
+                                            "text": "注意：如果for update的不是主键，或不为精准匹配（=），如 >、<、like等，否则也会退化成临键锁",
+                                            "layout_left_offset": {
+                                                "x": -52,
+                                                "y": 0
+                                            }
+                                        },
+                                        "children": []
+                                    }
+                                ]
                             }
                         ]
                     }
