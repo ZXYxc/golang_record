@@ -171,6 +171,31 @@
             },
             {
                 "data": {
+                    "id": "d2mmzol3fxc0",
+                    "created": 1720693646558,
+                    "text": "binlog异常"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mmzrkgo7c0",
+                            "created": 1720693653050,
+                            "text": "binlog保持3天，但是使用达到了100G磁盘满了"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn09vz7lc0",
+                            "created": 1720693692928,
+                            "text": "服务日志出现lock time out/ connect has gone"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
                     "id": "d1ky0evj7080",
                     "created": 1716865457641,
                     "text": "kubelet异常重启导致流量损失5min"
@@ -239,6 +264,112 @@
                             "id": "d1ky31hbvbk0",
                             "created": 1716865663576,
                             "text": "kubelet恢复后，pod恢复正常，CIS恢复流量，节点取消驱逐"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2mn240iyq80",
+                    "created": 1720693836871,
+                    "text": "巡检项目"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mn295nuo80",
+                            "created": 1720693848065,
+                            "text": "检查local集群下的kubeconfig是否正确"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn2jx5w3c0",
+                            "created": 1720693871496,
+                            "text": "kubeconfig的user是否正确"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mn2pbu1eo0",
+                                    "created": 1720693883267,
+                                    "text": "没有权限创建rolebinding"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn2w3b03s0",
+                            "created": 1720693897989,
+                            "text": "coredns解析svc地址是否正常"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn32d4xio0",
+                            "created": 1720693911644,
+                            "text": "nas域名是否正常解析"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn35hyqo00",
+                            "created": 1720693918466,
+                            "text": "resolve.conf是否配置正确"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn3gf7u400",
+                            "created": 1720693942245,
+                            "text": "flannel路由是否缺失"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn3lnoac80",
+                            "created": 1720693953640,
+                            "text": "swap是否开机禁用且关闭"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn3z14cfs0",
+                            "created": 1720693982751,
+                            "text": "harbor证书是否正确"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn42ytls80",
+                            "created": 1720693991319,
+                            "text": "k8s核心组件是否正常"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn47h4tw80",
+                            "created": 1720694001134,
+                            "text": "3.x的内核是否关闭nokmem"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn5qbetzk0",
+                            "created": 1720694120511,
+                            "text": "文件系统是否配置到fstab"
                         },
                         "children": []
                     }

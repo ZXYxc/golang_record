@@ -1,0 +1,45 @@
+1、趋势不需要这么多。主要是讲云原生是什么，要引入什么是k8s，什么是容器和docker。
+2、最前面先讲痛点，传统开发有什么环境问题（讨论），把为什么需要容器，去掉容器运行时的介绍。
+3、容器文件系统、内核那些可以去掉
+4、先讲一下容器的发展史，历史的东西
+5、可以用一个helloWorld镜像作为介绍
+6、镜像仓库的页面，降低复杂度
+7、docker的生命周期，先展示有颜色的、再展示普通的
+8、应用如何容器化去掉
+9、怎么更好的介绍容器编排
+10、k8s的架构，可以换成一张彩图吗
+11、全部container改成容器
+
+
+
+export ALL_PROXY=SOCKS5://10.211.55.2:1080
+export ALL_PROXY=HTTP://192.168.32.32:1087
+
+
+# 设置使用代理
+alias setproxy="export http_proxy=http://10.211.55.2:7890; export https_proxy=$http_proxy; export all_proxy=socks5://10.211.55.2:7890; echo 'Set proxy successfully'"
+# 设置取消使用代理
+alias unsetproxy="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
+
+
+cat <<EOF | sudo tee /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://10.211.55.2:7890"
+Environment="HTTPS_PROXY=http://10.211.55.2:7890"
+Environment="NO_PROXY=.svc,.svc.cluster.local,.cluster.local,.todoit.tech,10.244.0.0/16,10.96.0.0/12,127.0.0.1,localhost,192.168.0.0/16,172.16.0.0/12,10.0.0.0/8"
+EOF
+
+declare -a IPS=(10.211.55.3)
+
+ dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec ./dist/_probe -- status --cluster=cluster.local
+
+ ctrcl images
+ ctr
+
+
+
+ 
+例：将pod里 /data/test.sql 拷贝到主机当前路径下，并命名为test.sql
+kubectl cp  demo-5f8b6ff649-92k8q:tmp/token ./token
+
+Environment="HTTP_PROXY=http://10.211.55.2:7890" "HTTPS_PROXY=http://10.211.55.2:7890" "NO_PROXY=10.211.55.3,node1,node1.cluster.local,192.168.0.0/16,10.0.0.0/8,127.0.0.1,localhost,10.233.0.0/18,10.233.64.0/18,svc,svc.cluster.local"

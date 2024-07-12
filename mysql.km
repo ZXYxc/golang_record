@@ -171,13 +171,115 @@
                         "data": {
                             "id": "d1druxyeceo0",
                             "created": 1716137182632,
-                            "text": "Mysql有四种事务隔离级别，这四种隔离级别代表当存在多个事务并发冲突时，可能出现的脏读、不可重复读、幻读的问题。\n其中InnoDB在RR的隔离级别下，解决了幻读的问题。",
+                            "text": "Mysql有四种事务隔离级别，这四种隔离级别代表当存在多个事务并发冲突时，可能出现的脏读、不可重复读、幻读的问题。\n其中InnoDB在RR的隔离级别下，通过MVCC解决了幻读的问题。",
                             "layout_left_offset": {
                                 "x": -67,
                                 "y": -70
                             }
                         },
-                        "children": []
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2miformsmg0",
+                                    "created": 1720680795230,
+                                    "text": "版本链结构"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mifyiu4lk0",
+                                            "created": 1720680816466,
+                                            "text": "每当事务修改一行记录时，会基于写时复制（Copy-On-Write）策略生成一份副本，并通过指针指向上一个版本的数据记录. 如此一来，依据修改的先后顺序，各行记录会形成一条链表状的数据结构"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mih00tob40",
+                                            "created": 1720680898095,
+                                            "text": "row_id"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d2miiv92oq00",
+                                                    "created": 1720681044438,
+                                                    "text": "如果没有主键ID则会隐式创建"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mih9y8t000",
+                                            "created": 1720680919707,
+                                            "text": "transaction_id"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d2miikz9nyw0",
+                                                    "created": 1720681022077,
+                                                    "text": "标识一个行记录版本是由哪个事务修改生成的. 事务 id 是全局唯一且递增的分布式 id."
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mihswki6w0",
+                                            "created": 1720680960964,
+                                            "text": "roll_pointer"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d2miis7akb40",
+                                                    "created": 1720681037800,
+                                                    "text": "指向上一个版本数据的指针"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mig27v8og0",
+                                    "created": 1720680824510,
+                                    "text": "版本选择策略"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mig6nipcg0",
+                                            "created": 1720680834164,
+                                            "text": "针对普通 SELECT 语句的查询行为，本质上就是遍历版本链，然后挑选合适的版本数据，以此保证查询视角的一致性"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mig9b5p400",
+                                            "created": 1720680839947,
+                                            "text": "不同事务级别本质上是不同的版本选择策略"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mjh209apk0",
+                                            "created": 1720683723524,
+                                            "text": "innodb 中，为了支持事务回滚操作启用了 undo log 机制，因此天然就形成对应的版本链机制，在 MVCC 实现中可以直接进行复用，"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "data": {
@@ -188,6 +290,22 @@
                                 "x": -39,
                                 "y": -45
                             }
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mlz4hg57k0",
+                            "created": 1720690781692,
+                            "text": "for update永远是当前读，读最新的数据"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2mielqnb6o0",
+                            "created": 1720680710276,
+                            "text": "不可重复读指同一个事务中，同一条语句前后返回的结果不一致"
                         },
                         "children": []
                     },
@@ -275,6 +393,157 @@
                                         "children": []
                                     }
                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2mn8u90ta80",
+                    "created": 1720694364166,
+                    "text": "bin_log"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mn8wqfqh40",
+                            "created": 1720694369573,
+                            "text": "使用场景：主从复制和数据恢复"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mn977r94w0",
+                                    "created": 1720694392388,
+                                    "text": "主从复制：在Master端开启binlog，然后将binlog发送到各个Slave端，Slave端重放binlog从而达到主从数据一致。"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mn9az219k0",
+                                    "created": 1720694400569,
+                                    "text": "数据恢复：通过使用mysqlbinlog工具来恢复数据。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2mn9id01ig0",
+                            "created": 1720694416649,
+                            "text": "对于InnoDB存储引擎而言，只有在事务提交时才会记录biglog"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2mnchigo4w0",
+                    "created": 1720694649895,
+                    "text": "保持一致性"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mncjm9c0w0",
+                            "created": 1720694654479,
+                            "text": "redo_log"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mncx54he80",
+                                    "created": 1720694683917,
+                                    "text": "内存中的日志缓冲（redo log buffer）"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mnd3i7auo0",
+                                    "created": 1720694697769,
+                                    "text": "另一个是磁盘上的日志文件（redo log file）"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mndb49nf40",
+                                    "created": 1720694714340,
+                                    "text": "种先写日志，再写磁盘的技术就是MySQL里经常说到的WAL（Write-Ahead Logging）技术"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mndi9v4hk0",
+                                    "created": 1720694729916,
+                                    "text": "redo log实现上采用了大小固定，循环写入的方式，"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mndznefow0",
+                                            "created": 1720694767740,
+                                            "text": "redo log存在的意义主要就是降低对数据页刷盘的要求。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mnfnkynyw0",
+                                            "created": 1720694898201,
+                                            "text": "因为redo log记录的是数据页的物理变化，因此恢复的时候速度比逻辑日志（如binlog）要快很多。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mnfpq8is00",
+                                    "created": 1720694902872,
+                                    "text": "用于灾难恢复"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2mnfzic7qo0",
+                    "created": 1720694924162,
+                    "text": "保持原子性"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mng1kef2o0",
+                            "created": 1720694928641,
+                            "text": "undolog"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mngahpgfk0",
+                                    "created": 1720694948069,
+                                    "text": "如一条INSERT语句，对应一条DELETE的undo log"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mngdwum080",
+                                    "created": 1720694955515,
+                                    "text": "mvcc的关键"
+                                },
+                                "children": []
                             }
                         ]
                     }

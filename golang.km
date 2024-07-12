@@ -529,6 +529,309 @@
                     "hyperlinkTitle": ""
                 },
                 "children": []
+            },
+            {
+                "data": {
+                    "id": "d2mbrfk40s00",
+                    "created": 1720661967785,
+                    "text": "版本更新",
+                    "note": "v",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2mbrhw0iw00",
+                            "created": 1720661972858,
+                            "text": "1.22"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2md7kot5so0",
+                                    "created": 1720666053890,
+                                    "text": "http.ServeMux的表达能力得到了大幅提升，从原先只支持静态路由，到新版本中支持"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2md8z2b8pc0",
+                                    "created": 1720666163545,
+                                    "text": "行时可以使基于类型的垃圾收集的元数据更接近每个堆对象，从而将Go程序的CPU性能（延迟或吞吐量）提高了1-3%"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2md94yeknc0",
+                                    "created": 1720666176370,
+                                    "text": "loopvar试验特性转正"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2md9n4rlio0",
+                                            "created": 1720666215936,
+                                            "text": "还支持放置整型表达式，"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mdb5tagzk0",
+                                    "created": 1720666334965,
+                                    "text": "range-over-function iterators"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mdbc7srns0",
+                                            "created": 1720666348903,
+                                            "text": "Backward函数反向迭代"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2mdbvfa9ds0",
+                                            "created": 1720666390715,
+                                            "text": "通过GOEXPERIMENT=rangefunc可以体验该功能特性。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2mbriyhqp40",
+                            "created": 1720661975185,
+                            "text": "1.18"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mbttzd78g0",
+                                    "created": 1720662155911,
+                                    "text": "提出泛型"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mbw0exhqo0",
+                                            "created": 1720662326641,
+                                            "text": "类型形参(type parameter)"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc07qsw6o0",
+                                    "created": 1720662656053,
+                                    "text": "声明变量未使用报错"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc1241k6o0",
+                                    "created": 1720662722157,
+                                    "text": "明确了能修改go.mod, go.sum的命令只有三个：go get, go mod tidy和go mod download"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc2qd1q7s0",
+                                    "created": 1720662853308,
+                                    "text": "引入一个go.work文件用于开启Go工作区模式"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc3mjevm00",
+                                    "created": 1720662923350,
+                                    "text": "内置函数append对切片的扩容算法发生变化"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc3v998ko0",
+                                    "created": 1720662942327,
+                                    "text": "untime/pprof精确性提升"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mc4b6tgf40",
+                                    "created": 1720662977008,
+                                    "text": "tls client默认将使用TLS 1.2版本"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2mbtsf6vm80",
+                            "created": 1720662152514,
+                            "text": "1.20"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mdhhb0a5c0",
+                                    "created": 1720666830166,
+                                    "text": "持切片类型到数组类型(或数组类型的指针)的类型转换"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mdks5o0sg0",
+                                    "created": 1720667088880,
+                                    "text": "PGO(profile-guided optimization)"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mdmnaihns0",
+                                    "created": 1720667235019,
+                                    "text": "编译速度相对Go 1.19提升10%左右。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2mbrxrcvwo0",
+                            "created": 1720662007405,
+                            "text": "1.19",
+                            "note": "\nhttps://go.dev/doc/devel/release\n"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2mbtpxykig0",
+                                    "created": 1720662147119,
+                                    "text": "修订go doc comment格式"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mbu80kfso0",
+                                    "created": 1720662186458,
+                                    "text": "untime.SetMemoryLimit函数以及一个GOMEMLIMIT环境变量被引入"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mburp7ebc0",
+                                    "created": 1720662229307,
+                                    "text": "Go 1.19 race detector将升级到v3版thread sanitizer"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mdr7333080",
+                                    "created": 1720667591561,
+                                    "text": "内存模型的变化"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2md1v2r78g0",
+                            "created": 1720665606316,
+                            "text": "1.21",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2md1wmll400",
+                                    "created": 1720665609692,
+                                    "text": "loop var per-loop -> loop var per-iteration"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2md25jg61s0",
+                                    "created": 1720665629093,
+                                    "text": "大幅降低GC尾部延迟"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mcsac9ljk0",
+                                    "created": 1720664855901,
+                                    "text": "初始化顺序算法"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mculpuq4o0",
+                                            "created": 1720665037395,
+                                            "text": "每次选中未初始化且其他依赖都完成初始化的包"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2mcq298iow0",
+                                    "created": 1720664681575,
+                                    "text": "builtin包是一个特殊包，里面放置了Go语言预定义的标识符"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2mcqbw3szk0",
+                                            "created": 1720664702549,
+                                            "text": "min、max和clear"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2md4cwj16g0",
+                                    "created": 1720665801850,
+                                    "text": "panic(nil)替换为panic(new(runtime.PanicNilError))"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2md5406sbk0",
+                                    "created": 1720665860844,
+                                    "text": "go test -c支持为多个包同时构建测试二进制程序"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
