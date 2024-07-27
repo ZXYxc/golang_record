@@ -322,7 +322,11 @@
                                 "data": {
                                     "id": "d1irokfn5a80",
                                     "created": 1716644482798,
-                                    "text": "当goroutine因为channel操作或者network I/O而阻塞时"
+                                    "text": "当goroutine因为channel操作或者network I/O而阻塞时",
+                                    "layout_left_offset": {
+                                        "x": -64,
+                                        "y": 58
+                                    }
                                 },
                                 "children": [
                                     {
@@ -342,6 +346,18 @@
                                         "children": []
                                     }
                                 ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2vpfsql2hc0",
+                                    "created": 1721614591253,
+                                    "text": "M被占用，调度器（P)不愿意空等着，就会调度队列中的其他G去执行",
+                                    "layout_left_offset": {
+                                        "x": -46,
+                                        "y": -120
+                                    }
+                                },
+                                "children": []
                             },
                             {
                                 "data": {
@@ -407,7 +423,64 @@
                                     "created": 1716658470075,
                                     "text": "G是goroutine，是golang实现的协程，M是OS线程，P是逻辑处理器"
                                 },
-                                "children": []
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2vofdogx7k0",
+                                            "created": 1721611737364,
+                                            "text": "goroutine是会被重用的，线程也会"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vofpq2c7s0",
+                                            "created": 1721611763582,
+                                            "text": "P意味着程序可以同时并行的go的数量，所以通常是CPU的逻辑核"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vp809a2740",
+                                            "created": 1721613980708,
+                                            "text": "初始化一个goroutine:使用go func()命令时,Go运行时会新建一个goroutine或从池中选择一个已存在的goroutine。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vp89dkxjc0",
+                                            "created": 1721614000559,
+                                            "text": "goroutine会寻找一个队列来加入,如果所有逻辑处理器(P)的本地队列都已满,该goroutine会被放入全局队列。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vp8jrjgdc0",
+                                            "created": 1721614023171,
+                                            "text": "线程配对:这就是M发挥作用的地方。它获取一个P,并开始从P的本地队列处理goroutine"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vp8tskz4w0",
+                                            "created": 1721614045002,
+                                            "text": "当M与这个goroutine交互时,其关联的P就会被占用,无法分配给其他M。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2vp906fgww0",
+                                            "created": 1721614058900,
+                                            "text": "在M选择一个goroutine(G)后,它会为运行这个G获取所需的所有资源。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -415,14 +488,30 @@
                         "data": {
                             "id": "d1iwonsbqq00",
                             "created": 1716658595645,
-                            "text": "M"
+                            "text": "M的窃取"
                         },
                         "children": [
                             {
                                 "data": {
                                     "id": "d1iwops89rs0",
                                     "created": 1716658599993,
-                                    "text": "M获取可运行G流程是先从P的本地队列获取，若未获取到，则从其他P偷取过来（即work steal)，若其他的P也没有则从全局G队列获取，若都未获取到，则M将处于自旋状态，并不会销毁。"
+                                    "text": "M获取可运行G流程是先从P的本地队列获取，若未获取到，则从其他P偷取过来（即work steal)\n若其他的P也没有则从全局G队列获取，"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2vpdadfb480",
+                                    "created": 1721614394547,
+                                    "text": "该线程会向网络轮询器询问是否有任何与网络相关的工作"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2vpdhijgaw0",
+                                    "created": 1721614410094,
+                                    "text": "若都未获取到，则M将处于自旋状态，并不会销毁。"
                                 },
                                 "children": []
                             }
@@ -599,6 +688,23 @@
                                             "id": "d2mdbvfa9ds0",
                                             "created": 1720666390715,
                                             "text": "通过GOEXPERIMENT=rangefunc可以体验该功能特性。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2vpxlwlli80",
+                                    "created": 1721615986935,
+                                    "text": "更强大的官方mux"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2vpxr260ps0",
+                                            "created": 1721615998155,
+                                            "text": "路由正则匹配"
                                         },
                                         "children": []
                                     }

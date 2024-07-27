@@ -10,7 +10,8 @@
                 "data": {
                     "id": "d1dk1ct7cww0",
                     "created": 1716115116275,
-                    "text": "页"
+                    "text": "页",
+                    "expandState": "expand"
                 },
                 "children": [
                     {
@@ -40,7 +41,16 @@
                                                     "created": 1716115298202,
                                                     "text": "每个索引都指向下一层的一个节点"
                                                 },
-                                                "children": []
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d2y891ugf5k0",
+                                                            "created": 1721870783531,
+                                                            "text": "删除节点时不容易产生复杂的变形"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
                                             },
                                             {
                                                 "data": {
@@ -102,7 +112,15 @@
                                                                 "data": {
                                                                     "id": "d1dkl1a8kk00",
                                                                     "created": 1716116658467,
-                                                                    "text": "Topic"
+                                                                    "text": "有利于做范围查询"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "d2y8fi2en3k0",
+                                                                    "created": 1721871289025,
+                                                                    "text": "天然排序，order by可以利用主键索引"
                                                                 },
                                                                 "children": []
                                                             }
@@ -164,7 +182,8 @@
                 "data": {
                     "id": "d1drufpmto00",
                     "created": 1716137142920,
-                    "text": "innoDB怎么解决幻读"
+                    "text": "innoDB怎么解决幻读",
+                    "expandState": "collapse"
                 },
                 "children": [
                     {
@@ -314,7 +333,7 @@
                             "id": "d1ds1e1g6io0",
                             "created": 1716137687830,
                             "text": "加锁（可重复读级别没有间隙锁）",
-                            "expandState": "expand"
+                            "expandState": "collapse"
                         },
                         "children": [
                             {
@@ -402,7 +421,8 @@
                 "data": {
                     "id": "d2mn8u90ta80",
                     "created": 1720694364166,
-                    "text": "bin_log"
+                    "text": "bin_log",
+                    "expandState": "expand"
                 },
                 "children": [
                     {
@@ -427,6 +447,14 @@
                                     "text": "数据恢复：通过使用mysqlbinlog工具来恢复数据。"
                                 },
                                 "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d30bil9eqyg0",
+                                    "created": 1722083114314,
+                                    "text": "接入其他中间件，比如canal，伪装成从库接收信息，同步给其他上下游"
+                                },
+                                "children": []
                             }
                         ]
                     },
@@ -434,7 +462,7 @@
                         "data": {
                             "id": "d2mn9id01ig0",
                             "created": 1720694416649,
-                            "text": "对于InnoDB存储引擎而言，只有在事务提交时才会记录biglog"
+                            "text": "对于InnoDB存储引擎而言，只有在事务提交时才会记录binlog"
                         },
                         "children": []
                     }
@@ -444,7 +472,8 @@
                 "data": {
                     "id": "d2mnchigo4w0",
                     "created": 1720694649895,
-                    "text": "保持一致性"
+                    "text": "保持一致性",
+                    "expandState": "collapse"
                 },
                 "children": [
                     {
@@ -519,7 +548,8 @@
                 "data": {
                     "id": "d2mnfzic7qo0",
                     "created": 1720694924162,
-                    "text": "保持原子性"
+                    "text": "保持原子性",
+                    "expandState": "collapse"
                 },
                 "children": [
                     {
@@ -546,6 +576,392 @@
                                 "children": []
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2om99q9lwg0",
+                    "created": 1720894696664,
+                    "text": "执行计划",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2om9cn5f4o0",
+                            "created": 1720894703006,
+                            "text": "Extr 部分显示了 “Using index condition”，说明使用了索引下推"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2y8glwt3d40",
+                            "created": 1721871375758,
+                            "text": "Using filesort"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2y8gn223m00",
+                                    "created": 1721871378252,
+                                    "text": "需要被order_by的字段，不在索引中"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2y8hgguq1s0",
+                                    "created": 1721871442273,
+                                    "text": "虽然order_by的字段在索引中，但是需要回表，会先回表，后排序"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2y8lgfsez40",
+                                            "created": 1721871755666,
+                                            "text": "数据都还没找全前把查到的数据先放在sort_buffer中\n一个线程一个sort_buffer",
+                                            "layout_left_offset": {
+                                                "x": 30,
+                                                "y": -62
+                                            }
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2y8nf3tkmw0",
+                                            "created": 1721871909494,
+                                            "text": "在 InnoDB 存储引擎中，这个值是默认是256K。",
+                                            "layout_left_offset": {
+                                                "x": 0,
+                                                "y": -69
+                                            }
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2y8nhdmwp40",
+                                            "created": 1721871914441,
+                                            "text": "超过了就会用临时文件做排序",
+                                            "layout_left_offset": {
+                                                "x": -5,
+                                                "y": -68
+                                            }
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2y8rz94unk0",
+                                            "created": 1721872266807,
+                                            "text": "调整max_length_for_sort_data（select出来的数据行长度如果超过了就不会一次在sort buffer中存全部select的字段\n而是只存主键索引和排序字段，对结果再次做回表查询，多一次回表）",
+                                            "layout_left_offset": {
+                                                "x": -61,
+                                                "y": -53
+                                            }
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2omdfo2x7c0",
+                            "created": 1720895023049,
+                            "text": "Using where"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2omf6o8rhs0",
+                            "created": 1720895160196,
+                            "text": "type",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2omfkjh84g0",
+                                    "created": 1720895190383,
+                                    "text": "system"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omfps16ow0",
+                                            "created": 1720895201784,
+                                            "text": "表中只有一条数据，且存储引擎可以准确的统计到这条数据。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omfuylhko0",
+                                            "created": 1720895213065,
+                                            "text": "在MyISAM、memory类型"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omgax08nk0",
+                                    "created": 1720895247797,
+                                    "text": "const"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omgfyuanc0",
+                                            "created": 1720895258792,
+                                            "text": "通过主键或者唯一索引等值查询来定位一条数据。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omgsmqlyo0",
+                                    "created": 1720895286359,
+                                    "text": "eq_ref"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omgxfsogo0",
+                                            "created": 1720895296823,
+                                            "text": "在进行多表连接查询时，被驱动表通过主键或唯一索引键进行等值查询。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omh25gbow0",
+                                            "created": 1720895307081,
+                                            "text": "SELECT * FROM t1 LEFT JOIN t2 ON t1.id = t2.id;"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omhm242qo0",
+                                    "created": 1720895350415,
+                                    "text": "ref"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omhmw93680",
+                                            "created": 1720895352237,
+                                            "text": "普通的二级索引"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omi2ohvts0",
+                                            "created": 1720895386597,
+                                            "text": "select * from t2 where key2 =4;"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omimokdhc0",
+                                    "created": 1720895430137,
+                                    "text": "ref_or_null"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omiqtpz8g0",
+                                            "created": 1720895439156,
+                                            "text": "命中索引时，查询条件除了等值查询，还包含null值查询。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omiuo2ebc0",
+                                            "created": 1720895447521,
+                                            "text": "select * from t2 where key2 =4 or key2 is null;"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omjumrsfs0",
+                                    "created": 1720895525807,
+                                    "text": "index_merge"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omjzodyxs0",
+                                            "created": 1720895536788,
+                                            "text": "当查询条件可以命中多个索引时，MySQL会尝试在两个索引树查找匹配的条件，然后将结果其合并起来。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omk55g9p40",
+                                            "created": 1720895548704,
+                                            "text": "查询条件可以命中多个索引的情况。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2omkml6zyg0",
+                                    "created": 1720895586661,
+                                    "text": "range"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omkqbqfrc0",
+                                            "created": 1720895594796,
+                                            "text": "命中索引时，查询某一个范围内的结果。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2oml723k340",
+                                    "created": 1720895631219,
+                                    "text": "index"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2omld7rpls0",
+                                            "created": 1720895644623,
+                                            "text": "直接在某个索引树上做条件判断，并且不需要回表。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omlih47v40",
+                                            "created": 1720895656072,
+                                            "text": "select t3.key1 from t3 where t3.key2 =6 ;"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omlqsh2j40",
+                                            "created": 1720895674173,
+                                            "text": "创建了联合索引idx_key1_key2(key1,key2)时，判断条件key2=6时，其虽然不满足索引的最左前缀原则，但是可以遍历idx_key1_key2这颗索引树，找到key2=6的记录即可。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2ommm0np5s0",
+                                    "created": 1720895742148,
+                                    "text": "all"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2ommuae6ig0",
+                                            "created": 1720895760151,
+                                            "text": "直接遍历整个聚簇索引"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omn2pr74o0",
+                                            "created": 1720895778494,
+                                            "text": "select * from t1;"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omn8tbr0g0",
+                                            "created": 1720895791770,
+                                            "text": "当MySQL无法通过where条件匹配到合适的索引或者因为全部扫描的代价更小时，MySQL就会选择all这种类型来全表扫描。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2omn8tby1c0",
+                                            "created": 1720895791771,
+                                            "text": "这种方式也是最不推荐的。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2y8di6wtrk0",
+                    "created": 1721871132569,
+                    "text": "索引类型"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2y8dkjoxk00",
+                            "created": 1721871137696,
+                            "text": "覆盖索引"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2y8dm5pap40",
+                                    "created": 1721871141203,
+                                    "text": "需要查询的字段在索引中，可以直接返回，无需回表"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2zhlwj7wx40",
+                    "created": 1721998740648,
+                    "text": "数据类型"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2zhlz0pgxk0",
+                            "created": 1721998746059,
+                            "text": "浮点类型"
+                        },
+                        "children": []
                     }
                 ]
             }

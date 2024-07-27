@@ -230,6 +230,289 @@
                         "children": []
                     }
                 ]
+            },
+            {
+                "data": {
+                    "id": "d2wwhf6tfw80",
+                    "created": 1721736026214,
+                    "text": "为什么快"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2wwhgk4bcg0",
+                            "created": 1721736029195,
+                            "text": "完全基于内存"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2wwhzmvq3c0",
+                                    "created": 1721736070721,
+                                    "text": "过期删除"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwi16cc880",
+                                    "created": 1721736074075,
+                                    "text": "惰性删除"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwid5nwps0",
+                                    "created": 1721736100155,
+                                    "text": "maxmemory-policy"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2wwidv7smg0",
+                                            "created": 1721736101700,
+                                            "text": "到达后会基于内存删除策略删除"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2wwiwl4pu00",
+                            "created": 1721736142449,
+                            "text": "高效的内存数据结构"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2wwiz74keo0",
+                                    "created": 1721736148133,
+                                    "text": "动态字符串"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2wwjyx7km80",
+                                            "created": 1721736225897,
+                                            "text": "额外存储了长度"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2wwk1aupzk0",
+                                            "created": 1721736231076,
+                                            "text": "以'\\0'结尾防止溢出"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwk7qqheg0",
+                                    "created": 1721736245097,
+                                    "text": "List"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2wwkhq7qrs0",
+                                            "created": 1721736266833,
+                                            "text": "双端链表"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwl2q0h5s0",
+                                    "created": 1721736312533,
+                                    "text": "ziplist"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwlea4x400",
+                                    "created": 1721736337695,
+                                    "text": "Hash Table"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwm33lrv40",
+                                    "created": 1721736391719,
+                                    "text": "Sorted Set"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2wwm3ru6000",
+                                            "created": 1721736393185,
+                                            "text": "跳表的数据结构，类似B树"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "d2wwm95butk0",
+                                            "created": 1721736404884,
+                                            "text": "topic"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2wwny07alc0",
+                            "created": 1721736537358,
+                            "text": "单线程"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2wwo4usj200",
+                                    "created": 1721736552268,
+                                    "text": "避免上下文切换"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwoc1hpmo0",
+                                    "created": 1721736567911,
+                                    "text": "简化数据操作的并发控制：无需加锁"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "d2wwp9v989c0",
+                            "created": 1721736641545,
+                            "text": "事件驱动架构",
+                            "layout_left_offset": {
+                                "x": 17,
+                                "y": -13
+                            },
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "d2wwq0hp1000",
+                                    "created": 1721736699498,
+                                    "text": "套接字"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwpd3e46o0",
+                                    "created": 1721736648567,
+                                    "text": "IO多路复用"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "d2wwqeaciwo0",
+                                            "created": 1721736729528,
+                                            "text": "epoll"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "d2wwqvc8lx40",
+                                                    "created": 1721736766648,
+                                                    "text": "无并发连接限制"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d2wwqx90xsw0",
+                                                    "created": 1721736770807,
+                                                    "text": "仅关注和通知就绪的文件描述符，"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d2wwszfc2f40",
+                                                    "created": 1721736932271,
+                                                    "text": "epoll利用红黑树存储待监控的文件描述符，并使用内核层面的回调机制"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "d2wwuc9109s0",
+                                                    "created": 1721737038552,
+                                                    "text": "事件处理器"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "d2wwuetwd8w0",
+                                                            "created": 1721737044167,
+                                                            "text": "文件事件（File Events）"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "d2wwukjzx0o0",
+                                                                    "created": 1721737056629,
+                                                                    "text": "网络I/O操作，包括客户端连接请求（AE_READABLE事件）、客户端命令请求（AE_READABLE事件）和服务端命令回复（AE_WRITABLE事件）"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "d2wwuockch40",
+                                                            "created": 1721737064887,
+                                                            "text": "时间事件"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "d2wwursiev40",
+                                                                    "created": 1721737072382,
+                                                                    "text": "对应定时任务，如键值对过期检查、持久化操作等"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "d2wwv97lbvc0",
+                                    "created": 1721737110299,
+                                    "text": "一个线程内并发处理大量客户端请求，而无需为每个客户端创建独立的线程"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
